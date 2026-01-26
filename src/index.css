@@ -1,0 +1,10 @@
+@import "tailwindcss";
+body{
+    font-family: "Syne", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+html, body {
+  overflow-x: hidden;
+}
