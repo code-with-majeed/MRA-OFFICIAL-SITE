@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const tabs = [
@@ -27,11 +27,26 @@ const Business = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
+  const handleViewAllClick = () => {
+    const sectionId = "StatsHero";
+    const el = document.getElementById(sectionId);
+    
+    if (el) {
+      // Already on the home page, scroll directly
+      const yOffset = -80;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    } else {
+      // Navigate to home page with hash
+      navigate("/#" + sectionId);
+    }
+  };
   // Solid brand color
   const brandColor = "#1B388E";
 
@@ -112,7 +127,7 @@ const Business = () => {
               </h2>
               <div className="flex justify-center lg:justify-start">
                 <button 
-                  onClick={() => navigate("/#StatsHero")}
+                  onClick={handleViewAllClick}
                   className="text-[#1B388E] mt-6 font-bold cursor-pointer transition-all duration-300 text-xs xs:text-sm sm:text-sm md:text-base relative group">
                   View All
                   <span className="absolute bottom-0 left-0 h-1 bg-[#1B388E] w-0 group-hover:w-full transition-all duration-300" />
