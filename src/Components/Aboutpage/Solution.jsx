@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import logoSvg1 from "../../assets/jolie-1.svg.svg";
 import logoSvg2 from "../../assets/tecnologia.svg.svg";
 import logoSvg3 from "../../assets/caridad.svg (1).svg";
@@ -7,6 +8,7 @@ import logoSvg5 from "../../assets/petmania.svg.svg";
 import logoSvg6 from "../../assets/Scuola_Logo_OnlyTop-1.svg.svg";
 
 const Solution = () => {
+  const navigate = useNavigate();
   const logos = [
     { src: logoSvg1, alt: "Jolie" },
     { src: logoSvg2, alt: "Tecnologia" },
@@ -41,7 +43,7 @@ const Solution = () => {
               drive conversions, and accelerate revenue growth.
             </p>
 
-            <p className="font-bold underline cursor-pointer text-[#1B388E]">
+            <p className="font-bold underline cursor-pointer text-[#1B388E]" onClick={() => navigate("/#StatsHero")}>
               Explore Our Solutions
             </p>
           </div>
