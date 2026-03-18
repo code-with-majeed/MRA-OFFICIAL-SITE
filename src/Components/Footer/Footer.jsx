@@ -30,27 +30,27 @@ const navLinks = [
 const socialIcons = [
   {
     Icon: FaInstagram,
-    color: "hover:text-pink-500",
+    color: "hover:text-[#1B388E]",
     link: "https://www.instagram.com/mra.devs/",
   },
   {
     Icon: FaTwitter,
-    color: "hover:text-blue-400",
+    color: "hover:text-[#1B388E]",
     link: "https://twitter.com/mradevelopers",
   },
   {
     Icon: FaFacebookF,
-    color: "hover:text-blue-600",
+    color: "hover:text-[#1B388E]",
     link: "https://www.facebook.com/mradevelopers",
   },
   {
     Icon: FaLinkedin,
-    color: "hover:text-blue-700",
+    color: "hover:text-[#1B388E]",
     link: "https://www.linkedin.com/company/mradevs/posts/?feedView=all",
   },
   {
     Icon: FaYoutube,
-    color: "hover:text-red-600",
+    color: "hover:text-[#1B388E]",
     link: "https://www.youtube.com/@mra_developers",
   },
 ];
@@ -91,9 +91,9 @@ const Footer = () => {
       </div>
 
       {/* Main Footer Container */}
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8">
         {/* Gray Content Section - Fixed border issue */}
-        <div className="relative bg-gray-200 rounded-t-3xl z-30 -top-10 lg:rounded-3xl pb-8 lg:pb-12 px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="relative bg-gray-200 rounded-t-3xl z-30 -top-10 lg:rounded-3xl pb-8 lg:pb-12 px-4 sm:px-6 lg:px-8">
         
           {/* Logo Section */}
           <motion.div
@@ -123,7 +123,7 @@ const Footer = () => {
                 {column.map((service, j) => (
                   <p
                     key={j}
-                    className="text-sm lg:text-base text-gray-700 cursor-pointer hover:text-blue-600 transition-colors duration-200"
+                    className="text-sm lg:text-base text-gray-700 cursor-pointer hover:text-[#1B388E] transition-colors duration-200"
                   >
                     {service}
                   </p>
@@ -145,7 +145,7 @@ const Footer = () => {
             {navLinks.map((link) => (
               <span
                 key={link}
-                className="text-sm lg:text-base text-gray-700 cursor-pointer font-medium hover:text-blue-600 transition-colors duration-200 px-1"
+                className="text-sm lg:text-base text-gray-700 cursor-pointer font-medium hover:text-[#1B388E] transition-colors duration-200 px-1"
               >
                 {link}
               </span>
@@ -164,7 +164,7 @@ const Footer = () => {
           >
             {/* Copyright */}
             <span className="text-sm text-gray-600 text-center md:text-left order-2 md:order-1">
-              © 2026 MRA Developers. All rights reserved.
+              © 2026 MRA Developers. <span className="font-bold">All rights reserved.</span>
             </span>
 
             {/* Social Icons */}
@@ -197,7 +197,7 @@ const Footer = () => {
             onClick={scrollToTop}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="fixed bottom-6 right-6 w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-xl z-50 hover:bg-blue-700 transition-colors duration-200"
+            className="fixed bottom-6 right-6 w-8 h-8 lg:w-12 lg:h-12 rounded-full bg-[#1B388E] text-white flex items-center justify-center shadow-xl z-50 hover:bg-blue-800 cursor-pointer transition-colors duration-200"
           >
             <FaArrowUp className="text-lg" />
           </motion.button>

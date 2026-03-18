@@ -1,10 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
 @import "tailwindcss";
-body{
-    font-family: "Syne", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
+
+/* Global Body Font */
+body {
+  font-family: "Roboto", sans-serif;
 }
+
+/* Headings Font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Paragraph Styling (lighter + readable) */
+p {
+  font-weight: 400;
+  line-height: 1.6;
+  font-size:16px;
+  /* color: #4B5563; optional: slightly softer text color for professional look */
+}
+
 html, body {
   overflow-x: hidden;
 }

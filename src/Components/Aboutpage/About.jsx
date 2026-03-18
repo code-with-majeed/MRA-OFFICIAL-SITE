@@ -77,7 +77,7 @@ const About = () => {
             variants={slideInFromLeft}
           >
             <motion.p 
-              className="font-bold mb-3 text-sm sm:text-base"
+              className="font-bold mb-3 text-sm sm:text-base text-[#1B388E]"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

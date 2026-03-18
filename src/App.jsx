@@ -22,17 +22,16 @@ const ScrollHandler = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // 🔹 Agar Home ke kisi section par scroll karna ho
+    // 🔹 Agar kski section par scroll karna ho
     if (location.state?.scrollTo) {
-      const el = document.getElementById(location.state.scrollTo);
-      if (el) {
-        setTimeout(() => {
-          el.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }, 100);
-      }
+      setTimeout(() => {
+        const el = document.getElementById(location.state.scrollTo);
+        if (el) {
+          const yOffset = -80; // Account for fixed navbar
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      }, 100);
     } 
     // 🔹 Normal page navigation
     else {
@@ -42,7 +41,7 @@ const ScrollHandler = () => {
         behavior: "smooth",
       });
     }
-  }, [location.pathname]);
+  }, [location.pathname, location.state?.scrollTo]);
 
   return null;
 };
@@ -68,8 +67,8 @@ const App = () => {
         {/* 🔹 Main content wrapper */}
         <div className="flex-1 max-w-full">
           <Routes>
-            <Route path="/" element={<Navigate to="/home" replace />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Navigate to="/" replace />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<ContactUs />} />
           </Routes>

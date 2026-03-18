@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { WiDayLightWind } from "react-icons/wi";
-import { FaPinterest } from "react-icons/fa6";
-import { SiSimplenote } from "react-icons/si";
-import { SiPaperspace } from "react-icons/si";
+import { FaEye } from "react-icons/fa";
+import { FaCheckCircle } from "react-icons/fa";
+import { FaFeather } from "react-icons/fa";
+import { FaRocket } from "react-icons/fa";
 
 const Values = () => {
   // Animation variants
@@ -86,7 +86,7 @@ const Values = () => {
           Our Values
         </motion.h2>
 
-        {/* CARDS - Removed extra container wrapper */}
+        {/* CARDS */}
         <motion.div 
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
           initial="hidden"
@@ -97,7 +97,7 @@ const Values = () => {
           
           {/* CARD 1 */}
           <motion.div 
-            className="w-full h-auto min-h-[300px] sm:min-h-[373px] rounded-[34px] bg-white shadow-md flex flex-col items-start p-5 sm:p-6"
+            className="w-full h-auto min-h-[300px] sm:min-h-[373px] rounded-[34px] bg-white shadow-md flex flex-col items-center xs:items-center sm:items-start p-5 sm:p-6"
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
@@ -120,10 +120,10 @@ const Values = () => {
               viewport={{ once: true }}
               variants={iconAnimation}
             >
-              <WiDayLightWind className="text-4xl text-[#062397] mb-4" />
+              <FaEye className="text-4xl text-[#1B388E] mb-4" />
             </motion.div>
             <motion.h6 
-              className="font-bold text-lg mb-2 text-left"
+              className="font-bold text-lg mb-2 text-center xs:text-center sm:text-left"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -132,7 +132,7 @@ const Values = () => {
               Transparency
             </motion.h6>
             <motion.p 
-              className="font-light text-sm leading-relaxed text-left"
+              className="font-light text-sm leading-relaxed text-center xs:text-center sm:text-left"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -146,7 +146,7 @@ const Values = () => {
 
           {/* CARD 2 */}
           <motion.div 
-            className="w-full h-auto min-h-[300px] sm:min-h-[373px] rounded-[34px] bg-white shadow-md flex flex-col items-start p-5 sm:p-6"
+            className="w-full h-auto min-h-[300px] sm:min-h-[373px] rounded-[34px] bg-white shadow-md flex flex-col items-center xs:items-center sm:items-start p-5 sm:p-6"
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
@@ -169,10 +169,10 @@ const Values = () => {
               viewport={{ once: true }}
               variants={iconAnimation}
             >
-              <FaPinterest className="text-4xl text-[#062397] mb-4" />
+              <FaCheckCircle className="text-4xl text-[#1B388E] mb-4" />
             </motion.div>
             <motion.h6 
-              className="font-bold text-lg mb-2 text-left"
+              className="font-bold text-lg mb-2 text-center xs:text-center sm:text-left"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -181,7 +181,7 @@ const Values = () => {
               Integrity
             </motion.h6>
             <motion.p 
-              className="font-light text-sm leading-relaxed text-left"
+              className="font-light text-sm leading-relaxed text-center xs:text-center sm:text-left"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -193,7 +193,7 @@ const Values = () => {
 
           {/* CARD 3 */}
           <motion.div 
-            className="w-full h-auto min-h-[300px] sm:min-h-[373px] rounded-[34px] bg-white shadow-md flex flex-col items-start p-5 sm:p-6"
+            className="w-full h-auto min-h-[300px] sm:min-h-[373px] rounded-[34px] bg-white shadow-md flex flex-col items-center xs:items-center sm:items-start p-5 sm:p-6"
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
@@ -216,10 +216,10 @@ const Values = () => {
               viewport={{ once: true }}
               variants={iconAnimation}
             >
-              <SiSimplenote className="text-4xl text-[#062397] mb-4" />
+              <FaFeather className="text-4xl text-[#1B388E] mb-4" />
             </motion.div>
             <motion.h6 
-              className="font-bold text-lg mb-2 text-left"
+              className="font-bold text-lg mb-2 text-center xs:text-center sm:text-left"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -228,7 +228,7 @@ const Values = () => {
               Simplicity
             </motion.h6>
             <motion.p 
-              className="font-light text-sm leading-relaxed text-left"
+              className="font-light text-sm leading-relaxed text-center xs:text-center sm:text-left"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -240,7 +240,7 @@ const Values = () => {
 
           {/* CARD 4 */}
           <motion.div 
-            className="w-full h-auto min-h-[300px] sm:min-h-[373px] rounded-[34px] bg-white shadow-md flex flex-col items-start p-5 sm:p-6"
+            className="w-full h-auto min-h-[300px] sm:min-h-[373px] rounded-[34px] bg-white shadow-md flex flex-col items-center xs:items-center sm:items-start p-5 sm:p-6"
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
@@ -263,10 +263,10 @@ const Values = () => {
               viewport={{ once: true }}
               variants={iconAnimation}
             >
-              <SiPaperspace className="text-4xl text-[#062397] mb-4" />
+              <FaRocket className="text-4xl text-[#1B388E] mb-4" />
             </motion.div>
             <motion.h6 
-              className="font-bold text-lg mb-2 text-left"
+              className="font-bold text-lg mb-2 text-center xs:text-center sm:text-left"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -275,7 +275,7 @@ const Values = () => {
               Performance
             </motion.h6>
             <motion.p 
-              className="font-light text-sm leading-relaxed text-left"
+              className="font-light text-sm leading-relaxed text-center xs:text-center sm:text-left"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}

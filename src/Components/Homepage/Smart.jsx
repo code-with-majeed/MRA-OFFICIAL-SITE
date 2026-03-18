@@ -79,7 +79,7 @@ const Smart = () => {
     <div className="w-full bg-white py-8 md:py-12 z-10">
       <div
         ref={ref}
-        className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16"
+        className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8"
       >
         {/* Heading */}
         <motion.div
@@ -91,7 +91,7 @@ const Smart = () => {
         >
           <h2
             className="text-center w-full max-w-[90%] sm:max-w-[85%] md:max-w-[810px] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug sm:leading-tight"
-            style={{ transform: "scaleY(-1)" }}
+            
           >
             What our happy customers are saying
           </h2>
@@ -106,9 +106,9 @@ const Smart = () => {
             transition={{ duration: 0.6 }}
             className="flex-1 w-full"
           >
-            <div className="p-4 sm:p-6 md:p-8">
+            <div className="p-4 sm:p-6 md:p-8 text-center md:text-left">
               <h3 className="text-3xl md:text-4xl mb-3 md:mb-4">
-                <FaQuoteLeft className="text-[#032697] w-10 h-10 mb-6 transform rotate-180" />
+                <FaQuoteLeft className="text-[#1B388E] w-10 h-10 mb-6 transform rotate-180 mx-auto md:mx-0" />
               </h3>
               <p className="text-gray-700 text-base sm:text-lg md:text-xl mb-3 md:mb-4 italic leading-relaxed">
                 "The entire staff at Numerique has been phenomenal. They are quick with their replies and incredibly helpful."
@@ -125,7 +125,7 @@ const Smart = () => {
             initial={{ x: 50, opacity: 0 }}
             animate={inView ? { x: 0, opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
-            className="flex flex-col items-center lg:items-start gap-4 md:gap-6 w-full lg:w-auto"
+            className="flex flex-col items-center lg:items-start gap-4 md:gap-6 w-full lg:w-auto text-center lg:text-left"
           >
             <motion.img
               src="/src/assets/Line-arrow-2.svg.png"
@@ -157,7 +157,7 @@ const Smart = () => {
               </div>
 
               <motion.div
-                className="flex items-center text-blue-600 font-semibold gap-1 cursor-pointer text-sm md:text-base"
+                className="flex items-center text-[#1B388E] font-semibold gap-1 cursor-pointer text-sm md:text-base"
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
@@ -173,12 +173,12 @@ const Smart = () => {
           initial={{ y: 40, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="w-full mt-8 sm:mt-12 md:mt-16 -mb-15" // <--- Added negative margin-bottom
+          className="w-full mt-8 sm:mt-12 md:mt-16 -mb-15"
         >
-          <div className="bg-gradient-to-r from-purple-50  py-8 sm:py-10 md:py-12 to-purple-100 rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden">
+          <div className="bg-gradient-to-r from-purple-50 to-purple-100 py-8 sm:py-10 md:py-12 rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden">
             <div className="p-4 sm:p-6 md:p-8 lg:p-10">
               {/* Top Content */}
-              <div className="flex flex-col lg:flex-row items-start justify-between gap-4 sm:gap-6 md:gap-8">
+              <div className="flex flex-col lg:flex-row items-start justify-between gap-4 sm:gap-6 md:gap-8 text-center lg:text-left">
                 {/* Left Text */}
                 <div className="flex-1">
                   <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 leading-snug md:leading-tight">
@@ -187,7 +187,7 @@ const Smart = () => {
                 </div>
 
                 {/* Right Text & Button */}
-                <div className="flex flex-col lg:items-end lg:text-right w-full lg:w-auto">
+                <div className="flex flex-col text-center md:text-right lg:items-end w-full lg:w-auto">
                   <p className="mb-2 text-gray-700 text-base sm:text-lg">
                     Have a project in mind? Speak with our experts now.
                   </p>
@@ -196,31 +196,33 @@ const Smart = () => {
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    +923018144802
+                    +9232 0321677
                   </motion.p>
                   <motion.button
-  onClick={() => navigate("/contact")}
-  className="
-    bg-gradient-to-r from-blue-600 to-blue-700
-    text-white
-    px-3 sm:px-4
-    py-2 sm:py-2.5
-    rounded-lg
-    cursor-pointer
-    flex items-center justify-center gap-1.5
-    hover:from-blue-700 hover:to-blue-800
-    shadow-md
-    text-xs sm:text-sm
-    w-full lg:w-auto
-  "
-  whileHover={{ scale: 1.03 }}
-  whileTap={{ scale: 0.96 }}
-  transition={{ duration: 0.2 }}
->
-  CALL YOUR FREE CONSULTATION
-  <IoIosArrowRoundForward className="text-base sm:text-lg" />
-</motion.button>
-
+                    onClick={() => navigate("/contact")}
+                    className="
+                      bg-[#1B388E]
+                      text-white
+                      px-3 sm:px-4
+                      py-2 sm:py-2.5
+                      rounded-lg
+                      cursor-pointer
+                      flex items-center justify-center gap-1.5
+                      hover:bg-[#082375]
+                      shadow-md hover:shadow-lg
+                      text-xs sm:text-sm font-semibold
+                      w-full lg:w-auto
+                      transition-all duration-300
+                    "
+                    whileHover={{ scale: 1.08, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    CALL YOUR FREE CONSULTATION
+                    <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1, repeat: Infinity }}>
+                      <IoIosArrowRoundForward className="text-base sm:text-lg" />
+                    </motion.span>
+                  </motion.button>
                 </div>
               </div>
 
@@ -241,11 +243,11 @@ const Smart = () => {
                 className="py-6 sm:py-8 md:py-10 flex flex-col lg:flex-row justify-between gap-4 sm:gap-6 md:gap-8"
               >
                 {/* Left - Partners */}
-                <motion.div variants={itemVariants} className="flex-1">
+                <motion.div variants={itemVariants} className="flex-1 text-center lg:text-left">
                   <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
                     A partner, not a vendor
                   </h3>
-                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-wrap">
+                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-wrap justify-center lg:justify-start">
                     {[1, 2, 3, 4].map((index) => (
                       <motion.img
                         key={index}
@@ -262,7 +264,7 @@ const Smart = () => {
                 {/* Right - ROAS */}
                 <motion.div
                   variants={itemVariants}
-                  className="flex-1 flex flex-col justify-end lg:items-end lg:text-right mt-4 lg:mt-0"
+                  className="flex-1 flex flex-col justify-end text-center md:text-right lg:items-end lg:text-right mt-4 lg:mt-0"
                 >
                   <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
                     6.7{" "}

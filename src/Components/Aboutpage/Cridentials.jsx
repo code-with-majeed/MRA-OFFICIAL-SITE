@@ -87,7 +87,7 @@ const Cridentials = () => {
           variants={itemVariants}
         >
           <h3 className='font-bold text-xl lg:text-2xl leading-tight'>
-            Credentials & recognition:
+            Credentials:
           </h3>
         </motion.div>
 
@@ -97,7 +97,7 @@ const Cridentials = () => {
           variants={itemVariants}
         >
           <h3 className='font-bold text-xl sm:text-2xl'>
-            Credentials & recognition:
+            Credentials & recognitio:
           </h3>
         </motion.div>
 
@@ -128,7 +128,7 @@ const Cridentials = () => {
   whileHover="hover"
   whileTap="tap"
   onClick={() => navigate("/contact")}   // ✅ ADD THIS
-  className="bg-gradient-to-r from-blue-600 to-blue-700 cursor-pointer text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg flex items-center justify-center gap-1 sm:gap-2 hover:from-blue-700 hover:to-blue-800 shadow-md text-xs sm:text-sm md:text-base font-medium w-full sm:w-auto lg:w-auto mt-2 sm:mt-0"
+  className="bg-gradient-to-r from-blue-800 to-blue-900 cursor-pointer text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg flex items-center justify-center gap-1 sm:gap-2 hover:from-blue-800 hover:to-blue-900 shadow-md text-xs sm:text-sm md:text-base font-medium w-full sm:w-auto lg:w-auto mt-2 sm:mt-0"
 >
   Get Proposal
   <IoIosArrowRoundForward className="text-base sm:text-lg md:text-xl" />

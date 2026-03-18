@@ -14,14 +14,18 @@ const Index = () => {
   // Scroll to section if state passed from Navbar
   useEffect(() => {
     if (location.state?.scrollTo) {
-      const el = document.getElementById(location.state.scrollTo);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      setTimeout(() => {
+        const el = document.getElementById(location.state.scrollTo);
+        if (el) {
+          const yOffset = -80; // Account for fixed navbar
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      }, 100);
       // Clear state to avoid repeat scroll
       window.history.replaceState({}, document.title);
     }
-  }, [location]);
+  }, [location.state?.scrollTo]);
 
   return (
     <div>

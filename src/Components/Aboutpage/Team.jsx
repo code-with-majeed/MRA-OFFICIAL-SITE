@@ -6,17 +6,17 @@ const teamMembers = [
     name: "MALIK RASHID ALI",
     role: "CEO & Founder",
     image: "/src/assets/Umar and adeel DP 1.png",
-    linkedin: "https://www.linkedin.com/in/rashid-ali-2ba733366/", 
+    linkedin: "https://www.linkedin.com/in/rashid-ali-2ba733366/",
   },
   {
     name: "ADEEL KHAN",
-    role: "Co-Founder & Operations / Finance Manager",
+    role: "Back-end Engineer",
     image: "/src/assets/Umar and adeel DP (1) 1.png",
     linkedin: "https://www.linkedin.com/in/madeel802/",
   },
   {
     name: "UMAR FAROOQ",
-    role: "Co-Founder & Technical Lead / Project Manager",
+    role: "Technical Lead",
     image: "/src/assets/umer.png",
     linkedin: "https://www.linkedin.com/in/umar-farooq/",
   },
@@ -24,7 +24,7 @@ const teamMembers = [
     name: "TAYYAB UMER",
     role: "UI/UX Designer",
     image: "/src/assets/tayyab.png",
-    linkedin: "https://www.linkedin.com/in/tayyabumar?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    linkedin: "https://www.linkedin.com/in/tayyabumar/",
   },
   {
     name: "MUHAMMAD ASAD KAMAL SHAH",
@@ -33,9 +33,9 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/muhammad-asad-kamal-shah-076053318/",
   },
   {
-    name: "SHABBIR HASSAN",
-    role: "Frontend Developer",
-    image: "/src/assets/Shabir.png",
+    name: "Waseem Sajjad",
+    role: "UI/UX Designer",
+    image: "/src/assets/Waseem.jfif",
     linkedin: "https://www.linkedin.com/in/shabbir-hassan/",
   },
   {
@@ -45,10 +45,40 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/m-adil-272262373/",
   },
   {
-    name: "MUHAMMAD TALHA",
-    role: "Backend Developer",
-    image: "/src/assets/Talha.png",
-    linkedin: "https://www.linkedin.com/in/muhmmad-talha-792801302?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ",
+    name: "Maheen",
+    role: "HR",
+    image: "/src/assets/Hr.jfif",
+    linkedin: "https://www.linkedin.com/in/maheen-munawar-18a917318/",
+  },
+  {
+    name: "Musfarah Wajid",
+    role: "QA",
+    image: "/src/assets/Musfarah.jfif",
+    linkedin: "https://www.linkedin.com/in/musfarah-wajid-b34083362/",
+  },
+  {
+    name: "Mariyum Khurshid",
+    role: "Flutter Developer",
+    image: "/src/assets/Maryam.jfif",
+    linkedin: "https://www.linkedin.com/in/mariyum-khurshid-009198249/",
+  },
+  {
+    name: "Abdul Majeed",
+    role: "Front-end Developer",
+    image: "/src/assets/Majeed.jpeg",
+    linkedin: "https://www.linkedin.com/in/abdul-majeed-137746382/",
+  },
+  {
+    name: "Awais",
+    role: "Full-stack Developer",
+    image: "/src/assets/Awais.jfif",
+    linkedin: "https://www.linkedin.com/in/muhammad-awais-577958316/",
+  },
+  {
+    name: "Zain Javed",
+    role: "Full-stack Developer",
+    image: "/src/assets/Zain.jfif",
+    linkedin: "https://www.linkedin.com/in/zain-javed-514733274/",
   },
 ];
 
@@ -60,12 +90,18 @@ const TeamSection = () => {
         
         {/* UPPER SECTION */}
         <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-12 md:gap-16">
-          {/* LEFT SIDE */}
+          {/* LEFT SIDE - centered on mobile, full width */}
           <div className="w-full lg:w-1/2 text-center lg:text-left">
-            <p className="text-sm font-medium tracking-wider text-gray-600 uppercase mb-2">
+            <p className="text-sm font-medium tracking-wider text-[#1B388E] uppercase mb-2">
               TEAM
             </p>
-            <h2 className="text-[38px] sm:text-[48px] md:text-[60px] lg:text-[65px] font-extrabold leading-[1.1] mb-8 md:mb-10">
+            {/* Mobile heading (2 lines) */}
+            <h2 className="block lg:hidden text-[32px] xs:text-[38px] sm:text-[48px] font-extrabold leading-[1.2] mb-8 md:mb-10">
+              The Innovators<br />
+              Behind <span className="text-black">MRA Developers</span>
+            </h2>
+            {/* Desktop heading (4 lines) */}
+            <h2 className="hidden lg:block text-[38px] sm:text-[48px] md:text-[60px] lg:text-[65px] font-extrabold leading-[1.1] mb-8 md:mb-10">
               The <br /> Innovators <br /> Behind <br />
               <span className="text-black">MRA Developers</span>
             </h2>
@@ -73,12 +109,12 @@ const TeamSection = () => {
 
           {/* RIGHT SIDE - Mobile: stack vertically, Desktop: show 3 images */}
           <div className="w-full lg:w-1/2">
-            {/* MOBILE LAYOUT - All 3 images stacked vertically */}
-            <div className="flex flex-col items-center gap-6 lg:hidden">
+            {/* MOBILE LAYOUT - All 3 cards full width */}
+            <div className="flex flex-col gap-6 lg:hidden">
               {teamMembers.slice(0, 3).map((member, index) => (
                 <div 
                   key={index}
-                  className="relative w-full max-w-[300px] rounded-[20px] overflow-hidden shadow-lg bg-white"
+                  className="relative w-full rounded-[20px] overflow-hidden shadow-lg bg-white"
                 >
                   <img
                     src={member.image}
@@ -94,7 +130,7 @@ const TeamSection = () => {
                     href={member.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute bottom-4 right-4 w-7 h-7 flex items-center justify-center rounded-full bg-[#0d1c88] hover:bg-[#1428b0] text-white transition"
+                    className="absolute bottom-4 right-4 w-7 h-7 flex items-center justify-center rounded-full bg-[#1B388E] hover:bg-[#051474] text-white transition"
                   >
                     <FaLinkedinIn size={14} />
                   </a>
@@ -121,7 +157,7 @@ const TeamSection = () => {
                     href={teamMembers[0].linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute bottom-4 right-4 w-7 h-7 flex items-center justify-center rounded-full bg-[#0d1c88] hover:bg-[#1428b0] text-white transition"
+                    className="absolute bottom-4 right-4 w-7 h-7 flex items-center justify-center rounded-full bg-[#1B388E] hover:bg-[#08257d] text-white transition"
                   >
                     <FaLinkedinIn size={14} />
                   </a>
@@ -149,7 +185,7 @@ const TeamSection = () => {
                       href={member.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="absolute bottom-3 right-3 w-6 h-6 flex items-center justify-center rounded-full bg-[#0d1c88] hover:bg-[#1428b0] text-white transition"
+                      className="absolute bottom-3 right-3 w-6 h-6 flex items-center justify-center rounded-full bg-[#1B388E] hover:bg-[#08257d] text-white transition"
                     >
                       <FaLinkedinIn size={12} />
                     </a>
@@ -182,7 +218,7 @@ const TeamSection = () => {
                   href={member.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute bottom-3 right-3 w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center rounded-full bg-[#0d1c88] hover:bg-[#1428b0] text-white transition"
+                  className="absolute bottom-3 right-3 w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center rounded-full bg-[#1B388E] hover:bg-[#072374] text-white transition"
                 >
                   <FaLinkedinIn size={12} />
                 </a>
@@ -198,7 +234,9 @@ const TeamSection = () => {
             100% { transform: translateX(-50%); }
           }
           .animate-scroll-x {
-            animation: scroll-x 20s linear infinite;
+            display: flex;
+            width: max-content;
+            animation: scroll-x 30s linear infinite;
           }
         `}</style>
       </div>

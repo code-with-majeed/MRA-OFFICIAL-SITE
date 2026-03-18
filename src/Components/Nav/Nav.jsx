@@ -8,39 +8,47 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
   const navItems = [
     { label: "HOME", path: "/" },
     { label: "ABOUT", path: "/about" },
-    { label: "SERVICES", sectionId: "services" },
-    { label: "PORTFOLIO", path: "/portfolio" },
-    { label: "TEAM", sectionId: "team" },
+    { label: "SERVICES", sectionId: "StatsHero", targetPage: "/" },
+    { label: "PORTFOLIO", sectionId: "Business", targetPage: "/" },
+    { label: "TEAM", sectionId: "team", targetPage: "/about" },
     { label: "CONTACT", path: "/contact" },
-    { label: "BLOG", sectionId: "blog" },
+    { label: "BLOG", sectionId: "Blogs", targetPage: "/" },
   ];
 
-  // Scroll effect
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleSectionClick = (sectionId) => {
-    if (location.pathname === "/") {
-      const el = document.getElementById(sectionId);
-      if (el) {
-        const yOffset = -80;
-        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: "smooth" });
-      }
-    } else {
-      navigate("/", { state: { scrollTo: sectionId } });
-    }
+  const handleSectionClick = (item) => {
     setIsOpen(false);
+    
+    if (item.sectionId && item.targetPage) {
+      // For section-based navigation
+      if (location.pathname === item.targetPage) {
+        // Already on the page, scroll to section
+        setTimeout(() => {
+          const el = document.getElementById(item.sectionId);
+          if (el) {
+            const yOffset = -80;
+            const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          }
+        }, 50);
+      } else {
+        // Navigate to page with scroll instruction
+        navigate(item.targetPage, { state: { scrollTo: item.sectionId } });
+      }
+    } else if (item.path) {
+      // For path-based navigation
+      navigate(item.path);
+    }
   };
 
-  // Mobile close handlers
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (isOpen && !e.target.closest(".mobile-menu-container")) setIsOpen(false);
@@ -53,13 +61,7 @@ const Navbar = () => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
   }, [isOpen]);
 
-  // Check if item is active
-  const isActive = (item) => {
-    if (item.path) {
-      return location.pathname === item.path;
-    }
-    return false;
-  };
+  const isActive = (item) => item.path && location.pathname === item.path;
 
   return (
     <>
@@ -67,15 +69,10 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        className={`fixed top-0 w-full z-50 transition-all duration-300 bg-gradient-to-br from-blue-900 to-blue-900 ${
           scrolled ? "py-2 shadow-lg" : "py-3"
         }`}
-        style={{
-  background: "linear-gradient(to bottom, rgba(40, 65, 165, 0.9), rgba(40, 65, 165, 0.75))"
-}}
-
       >
-        {/* Changed container to match StatHero width */}
         <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -96,29 +93,27 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
               {navItems.map((item) => (
-                <button
+                <motion.button
                   key={item.label}
-                  onClick={() =>
-                    item.sectionId ? handleSectionClick(item.sectionId) : navigate(item.path)
-                  }
-                  className={`px-3 xl:px-4 py-2 font-medium transition-all duration-300 text-sm xl:text-base rounded-md ${
-                    isActive(item)
-                      ? "text-white bg-white/20"
-                      : "text-white/90 hover:text-white hover:bg-white/10 cursor-pointer"
-                  }`}
+                  onClick={() => handleSectionClick(item)}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-1 xl:px-2 py-1 transition-all duration-300 text-sm xl:text-base rounded-md relative group text-white/90 hover:text-white cursor-pointer"
                 >
                   {item.label}
-                </button>
+                  {/* Professional full-width underline hover effect */}
+                  <span className="absolute bottom-1 left-2 right-0 h-0.5 bg-white scale-x-0 group-hover:scale-x-90 origin-left transition-transform duration-300 rounded-full" />
+                </motion.button>
               ))}
             </div>
 
-            {/* Desktop CTA Button */}
+            {/* Desktop CTA */}
             <div className="hidden lg:block">
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.08, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate("/contact")}
-                className="px-5 py-2.5 bg-white text-blue-900 font-bold rounded-lg cursor-pointer hover:bg-gray-100 transition-all duration-300 shadow-md text-sm xl:text-base"
+                className="px-5 py-2.5 text-[#1B388E] bg-white font-semibold rounded-lg cursor-pointer hover:bg-[#cbcdd2] transition-all duration-300 shadow-lg hover:shadow-xl text-sm xl:text-base"
               >
                 Book a Free Call
               </motion.button>
@@ -143,7 +138,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Overlay */}
+        {/* Mobile Menu Overlay & Drawer */}
         <AnimatePresence>
           {isOpen && (
             <>
@@ -160,19 +155,19 @@ const Navbar = () => {
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ type: "tween", duration: 0.3 }}
-                className="fixed top-0 right-0 h-full w-full max-w-xs z-50 bg-blue-900 flex flex-col"
-                style={{ backgroundColor: "linear-gradient(to bottom, rgba(40, 65, 165, 0.9), rgba(40, 65, 165, 0.75))" }}
+                className="fixed top-0 right-0 h-full w-full sm:max-w-sm z-50 flex flex-col mobile-menu-container"
+                style={{
+                  background: "linear-gradient(130deg, #293EA0 15.32%, #0A80FE 78.37%)",
+                }}
               >
                 {/* Mobile Menu Header */}
                 <div className="p-4 border-b border-white/20 flex items-center justify-between">
-                  <div className="flex items-center">
-                    <img
-                      src="/src/assets/MRA_developer.png"
-                      alt="MRA Developers"
-                      className="h-7"
-                      style={{ filter: "brightness(0) invert(1)" }}
-                    />
-                  </div>
+                  <img
+                    src="/src/assets/MRA_developer.png"
+                    alt="MRA Developers"
+                    className="h-7"
+                    style={{ filter: "brightness(0) invert(1)" }}
+                  />
                   <button
                     onClick={() => setIsOpen(false)}
                     className="p-2 hover:bg-blue-800 rounded-lg"
@@ -185,51 +180,49 @@ const Navbar = () => {
                 {/* Mobile Menu Items */}
                 <div className="flex-1 overflow-y-auto p-4">
                   <div className="space-y-2">
-                    {navItems.map((item) => (
-                      <button
+                    {navItems.map((item, index) => (
+                      <motion.button
                         key={item.label}
-                        onClick={() => {
-                          if (item.sectionId) {
-                            handleSectionClick(item.sectionId);
-                          } else {
-                            navigate(item.path);
-                            setIsOpen(false);
-                          }
-                        }}
-                        className={`w-full text-left py-3 px-4 rounded-lg font-medium transition-all ${
-                          isActive(item)
-                            ? "bg-white/20 text-white"
-                            : "text-white/90 hover:text-white hover:bg-white/10"
-                        }`}
+                        onClick={() => handleSectionClick(item)}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        whileHover={{ x: 8 }}
+                        className="w-full text-left py-3 px-4 rounded-lg font-medium transition-all relative group text-white/90 hover:text-white"
                       >
                         {item.label}
-                      </button>
+                        {/* Professional full-width underline effect */}
+                        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+                      </motion.button>
                     ))}
                   </div>
                 </div>
 
-                {/* Mobile CTA Button */}
+                {/* Mobile CTA */}
                 <div className="p-4 border-t border-white/20">
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
                     onClick={() => {
                       navigate("/contact");
                       setIsOpen(false);
                     }}
-                    className="w-full py-3 bg-white text-blue-900 font-bold rounded-lg hover:bg-gray-100 transition-all shadow-md cursor-pointer"
+                    className="w-full py-3 text-[#1B388E] font-semibold bg-white rounded-lg hover:bg-[#082375] transition-all shadow-md cursor-pointer"
                   >
                     Book a Free Discovery Call
-                  </button>
+                  </motion.button>
                 </div>
+
               </motion.div>
             </>
           )}
         </AnimatePresence>
       </motion.nav>
 
-      {/* Spacer */}
+      {/* Spacer – offsets fixed navbar */}
       <div className="h-14 sm:h-16 lg:h-20" />
     </>
   );
 };
 
-export default Navbar;` `
+export default Navbar;

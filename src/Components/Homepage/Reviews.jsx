@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { BiLogoAudible } from "react-icons/bi";
 import { SiGoogleanalytics } from "react-icons/si";
 import { BsCurrencyDollar } from "react-icons/bs";
+import { motion } from "framer-motion";
+import vecimg from '../../assets/Vector1.png';
 
 // Professional Star Component
 const StarRating = ({ count = 5 }) => {
@@ -42,63 +44,78 @@ const Reviews = () => {
       <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8">
         
         {/* ================= TOP REVIEWS ================= */}
-        <div
-          className={`flex justify-center items-center gap-6 sm:gap-10 text-center transition-all duration-700 ${
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, staggerChildren: 0.1 }}
+          viewport={{ once: true }}
+          className={`flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-10 text-center transition-all duration-700 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
         >
-          <div className="flex flex-col items-center">
-            <h4 className="text-xl sm:text-2xl md:text-3xl font-bold">5,000</h4>
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0 }} className="flex flex-col items-center min-w-[120px]">
+            <motion.h4 className="text-xl sm:text-2xl md:text-3xl font-bold" whileHover={{ scale: 1.1 }}>5,000</motion.h4>
             <p className="text-gray-600 text-xs sm:text-sm">Projects Delivered</p>
-          </div>
+          </motion.div>
 
           <div className="hidden sm:block h-10 w-px bg-gray-300" />
 
-          <div className="flex flex-col items-center">
-            <h4 className="text-xl sm:text-2xl md:text-3xl font-bold">5,000</h4>
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }} className="flex flex-col items-center min-w-[120px]">
+            <motion.h4 className="text-xl sm:text-2xl md:text-3xl font-bold" whileHover={{ scale: 1.1 }}>5,000</motion.h4>
             <p className="text-gray-600 text-xs sm:text-sm">Trusted by Businesses</p>
-          </div>
+          </motion.div>
 
           <div className="hidden sm:block h-10 w-px bg-gray-300" />
 
-          <div className="flex flex-col items-center">
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} className="flex flex-col items-center min-w-[120px]">
             {/* Professional Stars */}
             <StarRating count={5} />
             <p className="text-gray-700 font-semibold text-xs sm:text-sm mt-1">
               5,000+ Reviews
             </p>
-          </div>
+          </motion.div>
+        </motion.div>
+
+        {/* ================= VECTOR IMAGE BELOW STATS ================= */}
+        <div className="w-full mt-8 md:mt-12 flex justify-center">
+          <img 
+            src={vecimg} 
+            alt="Decorative vector" 
+            className="max-w-full h-auto"
+          />
         </div>
 
         {/* ================= HEADING / CONTENT ================= */}
-        <div
-          className={`w-full mt-16 transition-all duration-1000 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
-          }`}
-        >
-          <div className="flex flex-col lg:flex-row gap-10">
-            <div className="lg:w-1/2">
-              <p className="text-xs uppercase font-bold text-[#2181F8] mb-3 tracking-wider">
-                What we do
-              </p>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight">
-                We Solve Complex <br className="hidden sm:inline" />
-                Digital Challenges
-              </h2>
-            </div>
+          <div
+            className={`w-full mt-16 transition-all duration-1000 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
+            }`}
+          >
+            <div className="flex flex-col lg:flex-row gap-10">
+              <div className="lg:w-1/2 text-center lg:text-left">
+                <p className="text-xs uppercase font-bold text-[#1B388E] mb-3 tracking-wider">
+                  What we do
+                </p>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight">
+                  We Solve Complex <br className="hidden sm:inline" />
+                  Digital Challenges
+                </h2>
+              </div>
 
-            <div className="lg:w-1/2">
+            <div className="lg:w-1/2 text-center lg:text-left">
               <p className="text-gray-600 text-sm sm:text-base lg:text-lg">
                 At MRA Developers, we go beyond code to create real business impact.
                 Our team blends technical excellence with measurable growth
                 strategies.
               </p>
-              <a
-                href="#"
-                className="inline-block mt-4 font-bold text-[#155DFC] hover:translate-x-2 transition-transform"
-              >
-                More about us →
-              </a>
+              <div className="flex justify-center lg:justify-start">
+                <a
+                  href="#"
+                  className="inline-block mt-4 font-bold text-[#1B388E] hover:translate-x-2 transition-transform"
+                >
+                  More about us →
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -108,8 +125,13 @@ const Reviews = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             {/* Card 1 */}
-            <div
-              className={`bg-white p-4 rounded-xl border border-gray-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 ${
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(27, 56, 142, 0.15)" }}
+              transition={{ duration: 0.3 }}
+              viewport={{ once: true }}
+              className={`bg-white p-4 rounded-xl border border-gray-200 hover:border-[#1B388E] transition-all duration-300 ${
                 isVisible ? "opacity-100" : "opacity-0 translate-y-6"
               }`}
             >
@@ -117,16 +139,21 @@ const Reviews = () => {
                 <h4 className="text-base sm:text-lg font-bold">
                   Smarter <br /> Audiences
                 </h4>
-                <BiLogoAudible className="text-[#062397] text-3xl" />
+                <BiLogoAudible className="text-[#1B388E] text-3xl sm:text-4xl" />
               </div>
               <p className="text-gray-600 text-sm">
                 We harness advanced data insights and modern tools to help you reach the right audience at the right time, maximizing engagement and conversions.
               </p>
-            </div>
+            </motion.div>
 
             {/* Card 2 */}
-            <div
-              className={`bg-white p-4 rounded-xl border border-gray-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 delay-100 ${
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(27, 56, 142, 0.15)" }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              viewport={{ once: true }}
+              className={`bg-white p-4 rounded-xl border border-gray-200 hover:border-[#1B388E] transition-all duration-300 ${
                 isVisible ? "opacity-100" : "opacity-0 translate-y-6"
               }`}
             >
@@ -134,16 +161,21 @@ const Reviews = () => {
                 <h4 className="text-base sm:text-lg font-bold">
                   Smarter <br /> Analytics
                 </h4>
-                <SiGoogleanalytics className="text-[#062397] text-3xl" />
+                <SiGoogleanalytics className="text-[#1B388E] text-3xl sm:text-4xl" />
               </div>
               <p className="text-gray-600 text-sm">
                 Our tailored analytics solutions transform raw data into powerful strategies. We track, measure, and optimize performance to fuel business decisions with clarity.
               </p>
-            </div>
+            </motion.div>
 
             {/* Card 3 */}
-            <div
-              className={`bg-white p-4 rounded-xl border border-gray-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 delay-200 ${
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(27, 56, 142, 0.15)" }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              viewport={{ once: true }}
+              className={`bg-white p-4 rounded-xl border border-gray-200 hover:border-[#1B388E] transition-all duration-300 ${
                 isVisible ? "opacity-100" : "opacity-0 translate-y-6"
               }`}
             >
@@ -151,13 +183,12 @@ const Reviews = () => {
                 <h4 className="text-base sm:text-lg font-bold">
                   Smarter <br /> Revenue
                 </h4>
-                <BsCurrencyDollar className="text-[#062397] text-3xl" />
+                <BsCurrencyDollar className="text-[#1B388E] text-3xl sm:text-4xl" />
               </div>
               <p className="text-gray-600 text-sm">
                 Every solution we build is designed with your growth in mind. From digital products to enterprise platforms, we focus on driving sustainable results and long-term success.
               </p>
-            </div>
-
+            </motion.div>
           </div>
         </div>
       </div>
