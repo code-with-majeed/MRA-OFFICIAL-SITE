@@ -24,42 +24,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Ensure smooth navigation to sections, even across routes.
-  useEffect(() => {
-    if (!pendingSectionScroll) return;
-
-    // Once we've navigated to the correct route, attempt scrolling to the target element.
-    if (location.pathname !== pendingSectionScroll.targetPage) return;
-
-    let attempts = 0;
-    let timeoutId;
-
-    const tryScroll = () => {
-      attempts += 1;
-      const el = document.getElementById(pendingSectionScroll.sectionId);
-      if (el) {
-        const yOffset = -80;
-        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: "smooth" });
-        setPendingSectionScroll(null);
-        return;
-      }
-
-      // Retry a few times in case the DOM is still rendering.
-      if (attempts < 8) {
-        timeoutId = window.setTimeout(tryScroll, 60);
-      } else {
-        setPendingSectionScroll(null);
-      }
-    };
-
-    tryScroll();
-
-    return () => {
-      if (timeoutId) window.clearTimeout(timeoutId);
-    };
-  }, [location.pathname, pendingSectionScroll]);
-
   const handleSectionClick = (item) => {
     setIsOpen(false);
 
