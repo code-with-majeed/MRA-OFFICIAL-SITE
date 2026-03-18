@@ -22,26 +22,40 @@ const ScrollHandler = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // 🔹 Agar kski section par scroll karna ho
-    if (location.state?.scrollTo) {
-      setTimeout(() => {
-        const el = document.getElementById(location.state.scrollTo);
-        if (el) {
-          const yOffset = -80; // Account for fixed navbar
-          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          window.scrollTo({ top: y, behavior: "smooth" });
+    const scrollToSection = (sectionId) => {
+      const el = document.getElementById(sectionId);
+      if (!el) return false;
+      const yOffset = -80; // Account for fixed navbar
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+      return true;
+    };
+
+    const targetId = location.hash?.replace("#", "") || location.state?.scrollTo;
+
+    if (targetId) {
+      let attempts = 0;
+      const maxAttempts = 8;
+
+      const tryScroll = () => {
+        attempts += 1;
+        const didScroll = scrollToSection(targetId);
+        if (!didScroll && attempts < maxAttempts) {
+          window.setTimeout(tryScroll, 60);
         }
-      }, 100);
-    } 
-    // 🔹 Normal page navigation
-    else {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
+      };
+
+      tryScroll();
+      return;
     }
-  }, [location.pathname, location.state?.scrollTo]);
+
+    // Default behavior: scroll to top on route change
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [location.pathname, location.hash, location.state?.scrollTo]);
 
   return null;
 };

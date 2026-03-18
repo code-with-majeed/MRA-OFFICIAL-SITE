@@ -37,7 +37,7 @@ const Business = () => {
 
   return (
     <div className="bg-white">
-      <div className={`max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 py-6 xs:py-8 sm:py-10 md:py-12 lg:py-16 space-y-6 xs:space-y-8 sm:space-y-10 md:space-y-12 lg:space-y-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div className={`max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 py-6 xs:py-7 sm:py-8 md:py-10 lg:py-12 space-y-5 xs:space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         {/* Top Section: Card + Right Content */}
         <div className="flex flex-col lg:flex-row gap-6 xs:gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-stretch animate-fadeIn">
           {/* Left Card */}

@@ -39,7 +39,7 @@ const Reviews = () => {
   }, []);
 
   return (
-    <section className="w-full bg-gray-50 py-12 md:py-20 lg:py-24 overflow-hidden">
+    <section className="w-full bg-gray-50 py-10 md:py-14 lg:py-16 overflow-hidden">
       {/* Container with same width as navbar */}
       <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8">
         
@@ -77,7 +77,7 @@ const Reviews = () => {
         </motion.div>
 
         {/* ================= VECTOR IMAGE BELOW STATS ================= */}
-        <div className="w-full mt-8 md:mt-12 flex justify-center">
+        <div className="w-full mt-6 md:mt-10 flex justify-center">
           <img 
             src={vecimg} 
             alt="Decorative vector" 
@@ -87,7 +87,7 @@ const Reviews = () => {
 
         {/* ================= HEADING / CONTENT ================= */}
           <div
-            className={`w-full mt-16 transition-all duration-1000 ${
+            className={`w-full mt-12 transition-all duration-1000 ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
             }`}
           >

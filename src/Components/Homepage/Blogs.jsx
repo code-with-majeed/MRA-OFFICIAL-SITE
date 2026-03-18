@@ -43,12 +43,12 @@ const Blogs = () => {
   };
 
   return (
-    <div id="Blog" className="py-4 xs:py-6 sm:py-8 md:py-12 lg:py-16 bg-gray-50">
+    <div id="Blog" className="py-4 xs:py-5 sm:py-6 md:py-10 lg:py-12 bg-gray-50">
       {/* Container with same width as navbar */}
       <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8">
         
         {/* Heading with animation */}
-        <div className="text-center mb-6 xs:mb-8 sm:mb-10 md:mb-12 animate-fade-in-up">
+        <div className="text-center mb-5 xs:mb-7 sm:mb-9 md:mb-10 animate-fade-in-up">
           <h2 className="font-extrabold text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl">Think further with our</h2>
           <h2 className="font-extrabold text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl">expert insights.</h2>
         </div>

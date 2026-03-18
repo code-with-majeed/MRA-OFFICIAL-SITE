@@ -79,7 +79,7 @@ const Hero = () => {
   return (
     <section
       ref={ref}
-      className="w-full min-h-screen bg-gradient-to-br from-blue-900 to-blue-900 pt-20 -mt-20 pb-8 flex flex-col justify-center items-center text-white relative overflow-hidden"
+      className="w-full min-h-screen bg-gradient-to-br from-blue-900 to-blue-900  -mt-20 pb-6 flex flex-col justify-center items-center text-white relative overflow-hidden"
       // style={{
       //   background: "linear-gradient(130deg, #293EA0 15.32%, #0A80FE 78.37%)",
       // }}

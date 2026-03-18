@@ -24,26 +24,61 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Ensure smooth navigation to sections, even across routes.
+  useEffect(() => {
+    if (!pendingSectionScroll) return;
+
+    // Once we've navigated to the correct route, attempt scrolling to the target element.
+    if (location.pathname !== pendingSectionScroll.targetPage) return;
+
+    let attempts = 0;
+    let timeoutId;
+
+    const tryScroll = () => {
+      attempts += 1;
+      const el = document.getElementById(pendingSectionScroll.sectionId);
+      if (el) {
+        const yOffset = -80;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+        setPendingSectionScroll(null);
+        return;
+      }
+
+      // Retry a few times in case the DOM is still rendering.
+      if (attempts < 8) {
+        timeoutId = window.setTimeout(tryScroll, 60);
+      } else {
+        setPendingSectionScroll(null);
+      }
+    };
+
+    tryScroll();
+
+    return () => {
+      if (timeoutId) window.clearTimeout(timeoutId);
+    };
+  }, [location.pathname, pendingSectionScroll]);
+
   const handleSectionClick = (item) => {
     setIsOpen(false);
-    
+
     if (item.sectionId && item.targetPage) {
-      // For section-based navigation
+      // Build a hash link to the target section and navigate.
+      const targetUrl = `${item.targetPage}#${item.sectionId}`;
+
+      // If already on the target page, we can just update the hash and scroll
       if (location.pathname === item.targetPage) {
-        // Already on the page, scroll to section
-        setTimeout(() => {
-          const el = document.getElementById(item.sectionId);
-          if (el) {
-            const yOffset = -80;
-            const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-            window.scrollTo({ top: y, behavior: "smooth" });
-          }
-        }, 50);
+        navigate(targetUrl, { replace: false });
       } else {
-        // Navigate to page with scroll instruction
-        navigate(item.targetPage, { state: { scrollTo: item.sectionId } });
+        // Navigate to the target page with hash, scroll will be handled globally by ScrollHandler.
+        navigate(targetUrl, { replace: false });
       }
-    } else if (item.path) {
+
+      return;
+    }
+
+    if (item.path) {
       // For path-based navigation
       navigate(item.path);
     }

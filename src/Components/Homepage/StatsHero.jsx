@@ -134,7 +134,7 @@ const StatHero = () => {
   return (
     <div className="overflow-hidden">
       {/* StatsHero Section (TOP) */}
-      <section className="w-full bg-[#F4F6FF] py-8 xs:py-10 sm:py-12 md:py-16 animate-fadeIn">
+      <section className="w-full bg-[#F4F6FF] py-6 xs:py-8 sm:py-10 md:py-14 animate-fadeIn">
         <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 relative">
           {/* Hero Image */}
           <div className="relative rounded-xl xs:rounded-2xl md:rounded-3xl overflow-hidden animate-slideUp">
@@ -187,7 +187,7 @@ const StatHero = () => {
       </section>
 
       {/* Services Section (BOTTOM) */}
-      <section id="Services" className="bg-gray-50 py-8 xs:py-10 sm:py-12 md:py-16 px-3 xs:px-4 sm:px-6 lg:px-8 animate-fadeIn delay-300">
+      <section id="Services" className="bg-gray-50 py-6 xs:py-8 sm:py-10 md:py-14 px-3 xs:px-4 sm:px-6 lg:px-8 animate-fadeIn delay-300">
         <div className="max-w-7xl mx-auto mb-6 xs:mb-8 sm:mb-10 md:mb-12 flex flex-col justify-start text-center lg:text-left">
           <p className="text-[#1B388E] font-bold text-sm xs:text-base mb-1 xs:mb-2 animate-slideUp">Our Services</p>
           <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 animate-slideUp delay-100">

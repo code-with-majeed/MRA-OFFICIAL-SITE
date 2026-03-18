@@ -133,10 +133,10 @@ const Footer = () => {
           </motion.div>
 
           {/* Divider */}
-          <div className="h-px bg-gray-300 my-8 lg:my-10 mx-2" />
+          {/* <div className="h-px bg-gray-300 my-8 lg:my-10 mx-2" /> */}
 
           {/* Navigation Links */}
-          <motion.div
+          {/* <motion.div
             className="flex flex-wrap justify-center gap-4 md:gap-6 mb-8 lg:mb-10 px-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -150,7 +150,7 @@ const Footer = () => {
                 {link}
               </span>
             ))}
-          </motion.div>
+          </motion.div> */}
 
           {/* Divider */}
           <div className="h-px bg-gray-300 my-8 lg:my-10 mx-2" />
