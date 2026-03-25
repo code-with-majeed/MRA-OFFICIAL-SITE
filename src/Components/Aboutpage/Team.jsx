@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaLinkedinIn } from "react-icons/fa";
 
 const teamMembers = [
@@ -21,13 +21,13 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/umar-farooq/",
   },
   {
-    name: "TAYYAB UMER",
+    name: "Tayyab Umer",
     role: "UI/UX Designer",
     image: "/src/assets/tayyab.png",
     linkedin: "https://www.linkedin.com/in/tayyabumar/",
   },
   {
-    name: "MUHAMMAD ASAD KAMAL SHAH",
+    name: "Muhammad Asad Kamal",
     role: "MERN Stack Developer",
     image: "/src/assets/asad.png",
     linkedin: "https://www.linkedin.com/in/muhammad-asad-kamal-shah-076053318/",
@@ -36,18 +36,18 @@ const teamMembers = [
     name: "Waseem Sajjad",
     role: "UI/UX Designer",
     image: "/src/assets/Waseem.jfif",
-    linkedin: "https://www.linkedin.com/in/shabbir-hassan/",
+    linkedin: "https://www.linkedin.com/in/waseemsajjad123/",
   },
   {
-    name: "MUHAMMAD ADIL",
+    name: "Muhammad Adil",
     role: "AI Chatbot Developer",
     image: "/src/assets/adil.png",
     linkedin: "https://www.linkedin.com/in/m-adil-272262373/",
   },
   {
-    name: "Maheen",
+    name: "Maheen Munawar",
     role: "HR",
-    image: "/src/assets/Hr.jfif",
+    image: "/src/assets/maheen.png",
     linkedin: "https://www.linkedin.com/in/maheen-munawar-18a917318/",
   },
   {
@@ -69,7 +69,7 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/abdul-majeed-137746382/",
   },
   {
-    name: "Awais",
+    name: "Muhammad Awais",
     role: "Full-stack Developer",
     image: "/src/assets/Awais.jfif",
     linkedin: "https://www.linkedin.com/in/muhammad-awais-577958316/",
@@ -83,31 +83,143 @@ const teamMembers = [
 ];
 
 const TeamSection = () => {
+  // State for typing animation (character count)
+  const [mobileCharCount, setMobileCharCount] = useState(0);
+  const [desktopCharCount, setDesktopCharCount] = useState(0);
+
+  // Refs to store timeouts for cleanup
+  const mobileTimeout = useRef(null);
+  const desktopTimeout = useRef(null);
+
+  // Full text for mobile (single line)
+  const mobileFullText = "The Innovators Behind MRA Developers";
+
+  // Desktop lines (each as a separate string)
+  const desktopLines = ["The", "Innovators", "Behind", "MRA Developers"];
+  const desktopLengths = desktopLines.map(line => line.length);
+  const totalDesktopChars = desktopLengths.reduce((a, b) => a + b, 0);
+
+  // Typing speed (ms per character)
+  const typingSpeed = 100;
+
+  // Cleanup timeouts on unmount
+  useEffect(() => {
+    return () => {
+      if (mobileTimeout.current) clearTimeout(mobileTimeout.current);
+      if (desktopTimeout.current) clearTimeout(desktopTimeout.current);
+    };
+  }, []);
+
+  // Mobile typing effect (letter by letter, infinite loop with no pause)
+  useEffect(() => {
+    if (mobileTimeout.current) clearTimeout(mobileTimeout.current);
+
+    mobileTimeout.current = setTimeout(() => {
+      setMobileCharCount(prev => {
+        const next = prev + 1;
+        if (next > mobileFullText.length) {
+          // Instantly restart from 0
+          return 0;
+        }
+        return next;
+      });
+    }, typingSpeed);
+
+    return () => {
+      if (mobileTimeout.current) clearTimeout(mobileTimeout.current);
+    };
+  }, [mobileCharCount, mobileFullText.length, typingSpeed]);
+
+  // Desktop typing effect (letter by letter across all lines, infinite loop with no pause)
+  useEffect(() => {
+    if (desktopTimeout.current) clearTimeout(desktopTimeout.current);
+
+    desktopTimeout.current = setTimeout(() => {
+      setDesktopCharCount(prev => {
+        const next = prev + 1;
+        if (next > totalDesktopChars) {
+          // Instantly restart from 0
+          return 0;
+        }
+        return next;
+      });
+    }, typingSpeed);
+
+    return () => {
+      if (desktopTimeout.current) clearTimeout(desktopTimeout.current);
+    };
+  }, [desktopCharCount, totalDesktopChars, typingSpeed]);
+
+  // Compute desktop line texts based on current character count
+  const getDesktopLines = () => {
+    let remaining = desktopCharCount;
+    const line1 = desktopLines[0].slice(0, Math.min(remaining, desktopLengths[0]));
+    remaining = Math.max(0, remaining - desktopLengths[0]);
+
+    const line2 = remaining > 0 ? desktopLines[1].slice(0, Math.min(remaining, desktopLengths[1])) : "";
+    remaining = Math.max(0, remaining - desktopLengths[1]);
+
+    const line3 = remaining > 0 ? desktopLines[2].slice(0, Math.min(remaining, desktopLengths[2])) : "";
+    remaining = Math.max(0, remaining - desktopLengths[2]);
+
+    const line4 = remaining > 0 ? desktopLines[3].slice(0, Math.min(remaining, desktopLengths[3])) : "";
+
+    return { line1, line2, line3, line4 };
+  };
+
+  const { line1, line2, line3, line4 } = getDesktopLines();
+
+  // Helper to get conditional classes for long names (updated for responsiveness)
+  const getNameClasses = (name, context = 'default') => {
+    const isLongName = name === "Muhammad Asad Kamal";
+    
+    if (isLongName) {
+      if (context === 'mobile') return "text-xs sm:text-sm font-semibold break-words max-w-full";
+      if (context === 'desktopMain') return "text-sm font-semibold break-words max-w-full";
+      if (context === 'scrollbar') return "text-[10px] sm:text-xs font-semibold break-words max-w-full";
+      return "text-sm font-semibold break-words max-w-full";
+    }
+    
+    // Default classes for other names (unchanged)
+    if (context === 'mobile') return "text-lg font-semibold whitespace-nowrap";
+    if (context === 'desktopMain') return "text-base font-semibold whitespace-nowrap";
+    if (context === 'scrollbar') return "text-sm sm:text-base font-semibold whitespace-nowrap";
+    return "text-sm font-semibold whitespace-nowrap";
+  };
+
   return (
     <section className="w-full flex flex-col items-center justify-center py-16 md:py-20 font-[Inter] overflow-hidden">
       {/* Container with same width as navbar */}
       <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 w-full">
         
         {/* UPPER SECTION */}
-        <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-12 md:gap-16">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-6 md:gap-16">
           {/* LEFT SIDE - centered on mobile, full width */}
-          <div className="w-full lg:w-1/2 text-center lg:text-left">
-            <p className="text-sm font-medium tracking-wider text-[#1B388E] uppercase mb-2">
+          <div className="w-full lg:w-1/2 flex flex-col justify-center items-center lg:items-start text-center lg:text-left h-full">
+            <p className="w-full text-sm font-medium tracking-wider text-[#1B388E] uppercase mb-2">
               TEAM
             </p>
-            {/* Mobile heading (2 lines) */}
-            <h2 className="block lg:hidden text-[32px] xs:text-[38px] sm:text-[48px] font-extrabold leading-[1.2] mb-8 md:mb-10">
-              The Innovators<br />
-              Behind <span className="text-black">MRA Developers</span>
+
+            {/* Mobile heading: two lines, centered, responsive font sizes */}
+            <h2 className="w-full block lg:hidden text-2xl sm:text-3xl md:text-4xl font-extrabold text-center break-words max-w-full mb-4 md:mb-10 min-h-[4rem]">
+              {mobileFullText.slice(0, mobileCharCount)}
+              <span className="animate-pulse">|</span>
             </h2>
-            {/* Desktop heading (4 lines) */}
+
+            {/* Desktop heading with looping letter-by-letter animation (across lines) */}
             <h2 className="hidden lg:block text-[38px] sm:text-[48px] md:text-[60px] lg:text-[65px] font-extrabold leading-[1.1] mb-8 md:mb-10">
-              The <br /> Innovators <br /> Behind <br />
-              <span className="text-black">MRA Developers</span>
+              {/* Each line always contains either text or a non-breaking space to maintain constant height */}
+              <div>{line1 || '\u00A0'}</div>
+              <div>{line2 || '\u00A0'}</div>
+              <div>{line3 || '\u00A0'}</div>
+              <div>
+                <span className="text-black">{line4 || '\u00A0'}</span>
+                <span className="animate-pulse">|</span>
+              </div>
             </h2>
           </div>
 
-          {/* RIGHT SIDE - Mobile: stack vertically, Desktop: show 3 images */}
+          {/* RIGHT SIDE - unchanged */}
           <div className="w-full lg:w-1/2">
             {/* MOBILE LAYOUT - All 3 cards full width */}
             <div className="flex flex-col gap-6 lg:hidden">
@@ -122,8 +234,8 @@ const TeamSection = () => {
                     className="w-full h-[200px] object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 text-white drop-shadow-[1px_1px_3px_rgba(0,0,0,0.6)]">
-                    <h3 className="text-lg font-semibold">{member.name}</h3>
+                  <div className="absolute bottom-4 left-4 text-white drop-shadow-[1px_1px_3px_rgba(0,0,0,0.6)] right-4">
+                    <h3 className={getNameClasses(member.name, 'mobile')}>{member.name}</h3>
                     <p className="text-xs opacity-90">{member.role}</p>
                   </div>
                   <a
@@ -149,8 +261,8 @@ const TeamSection = () => {
                     className="w-full h-[250px] object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 text-white drop-shadow-[1px_1px_3px_rgba(0,0,0,0.6)]">
-                    <h3 className="text-lg font-semibold">{teamMembers[0].name}</h3>
+                  <div className="absolute bottom-4 left-4 text-white drop-shadow-[1px_1px_3px_rgba(0,0,0,0.6)] right-4">
+                    <h3 className={getNameClasses(teamMembers[0].name, 'desktopMain')}>{teamMembers[0].name}</h3>
                     <p className="text-sm opacity-90">{teamMembers[0].role}</p>
                   </div>
                   <a
@@ -177,8 +289,8 @@ const TeamSection = () => {
                       className="w-full h-[250px] object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-3 left-3 text-white drop-shadow-[1px_1px_3px_rgba(0,0,0,0.6)]">
-                      <h3 className="text-base font-semibold">{member.name}</h3>
+                    <div className="absolute bottom-3 left-3 text-white drop-shadow-[1px_1px_3px_rgba(0,0,0,0.6)] right-3">
+                      <h3 className={getNameClasses(member.name, 'desktopMain')}>{member.name}</h3>
                       <p className="text-xs opacity-90">{member.role}</p>
                     </div>
                     <a
@@ -210,8 +322,8 @@ const TeamSection = () => {
                   className="w-full h-[180px] sm:h-[200px] md:h-[230px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-3 left-3 text-white drop-shadow-[1px_1px_3px_rgba(0,0,0,0.6)]">
-                  <h3 className="text-sm sm:text-base font-semibold">{member.name}</h3>
+                <div className="absolute bottom-3 left-3 text-white drop-shadow-[1px_1px_3px_rgba(0,0,0,0.6)] right-3">
+                  <h3 className={getNameClasses(member.name, 'scrollbar')}>{member.name}</h3>
                   <p className="text-[10px] sm:text-xs opacity-90">{member.role}</p>
                 </div>
                 <a
@@ -237,6 +349,13 @@ const TeamSection = () => {
             display: flex;
             width: max-content;
             animation: scroll-x 30s linear infinite;
+          }
+          .animate-pulse {
+            animation: pulse 1s infinite;
+          }
+          @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
           }
         `}</style>
       </div>

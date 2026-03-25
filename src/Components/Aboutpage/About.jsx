@@ -62,7 +62,7 @@ const About = () => {
   return (
     <div className="w-full overflow-hidden">
       {/* TOP SECTION */}
-      <div className="max-w-7xl mx-auto mt-10 px-3 xs:px-4 sm:px-6 lg:px-8 py-12 md:py-16 pt-0">
+      <div className="max-w-7xl mx-auto  px-3 xs:px-4 sm:px-6 lg:px-8 py-8 md:py-16 pt-0">
         <motion.div 
           className="flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12"
           initial="hidden"

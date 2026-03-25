@@ -71,7 +71,7 @@ const Values = () => {
   };
 
   return (
-    <div className="w-full py-12 md:py-16 lg:py-20">
+    <div className="w-full py-8 md:py-12 lg:py-16">
       {/* Everything in same container as navbar */}
       <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8">
         

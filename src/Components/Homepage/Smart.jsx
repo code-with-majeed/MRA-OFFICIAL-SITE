@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FaQuoteLeft } from "react-icons/fa";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { motion } from "framer-motion";
+import { IoClose } from "react-icons/io5"; // for close button
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
 
@@ -29,8 +30,58 @@ const StarRating = ({ count = 5 }) => {
   );
 };
 
+// Dummy reviews data
+const reviewsData = [
+  {
+    id: 1,
+    name: "Edward Kennedy",
+    role: "Director, Client Experience",
+    rating: 5,
+    comment:
+      "The entire staff at Numerique has been phenomenal. They are quick with their replies and incredibly helpful.",
+    image: "/src/assets/reviws-1.jpg",
+  },
+  {
+    id: 2,
+    name: "Sarah Johnson",
+    role: "CEO, TechStart",
+    rating: 5,
+    comment:
+      "MRA's team transformed our digital presence. Their strategies boosted our engagement by 200% in just three months.",
+    image: "/src/assets/reviews-2.jpg",
+  },
+  {
+    id: 3,
+    name: "Michael Chen",
+    role: "Marketing Head, InnovateLabs",
+    rating: 5,
+    comment:
+      "Professional, responsive, and results-driven. Highly recommend their consultation services.",
+    image: "/src/assets/reviews-3.jpg",
+  },
+  {
+    id: 4,
+    name: "Lisa Wong",
+    role: "Founder, CreativeStudio",
+    rating: 5,
+    comment:
+      "They don't just deliver; they care about your success. A true partner in growth.",
+    image: "/src/assets/reviws-1.jpg", // placeholder, replace with actual
+  },
+  {
+    id: 5,
+    name: "David Miller",
+    role: "Product Manager, FinCorp",
+    rating: 5,
+    comment:
+      "The team's expertise in SEO and PPC is unmatched. Our ROI has never been better.",
+    image: "/src/assets/reviews-2.jpg",
+  },
+];
+
 const Smart = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const navigate = useNavigate();
 
@@ -40,6 +91,18 @@ const Smart = () => {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isModalOpen]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -75,6 +138,8 @@ const Smart = () => {
     "/src/assets/reviews-3.jpg",
   ];
 
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
+
   return (
     <div className="w-full bg-white py-8 md:py-12 z-10">
       <div
@@ -89,10 +154,7 @@ const Smart = () => {
           className="flex justify-center mb-8 md:mb-12 lg:mb-16"
           style={{ transform: "scaleY(-1)" }}
         >
-          <h2
-            className="text-center w-full max-w-[90%] sm:max-w-[85%] md:max-w-[810px] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug sm:leading-tight"
-            
-          >
+          <h2 className="text-center w-full max-w-[90%] sm:max-w-[85%] md:max-w-[810px] font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug sm:leading-tight">
             What our happy customers are saying
           </h2>
         </motion.div>
@@ -156,7 +218,9 @@ const Smart = () => {
                 ))}
               </div>
 
+              {/* View all reviews button - now clickable */}
               <motion.div
+                onClick={toggleModal}
                 className="flex items-center text-[#1B388E] font-semibold gap-1 cursor-pointer text-sm md:text-base"
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
@@ -196,7 +260,7 @@ const Smart = () => {
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    +9232 0321677
+                    +923111321677
                   </motion.p>
                   <motion.button
                     onClick={() => navigate("/contact")}
@@ -281,6 +345,72 @@ const Smart = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Modal for All Reviews */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={toggleModal}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            />
+
+            {/* Modal Content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-4 md:inset-10 lg:inset-20 z-50 overflow-hidden bg-white rounded-2xl shadow-2xl flex flex-col"
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800">
+                  Customer Reviews
+                </h3>
+                <button
+                  onClick={toggleModal}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <IoClose className="w-6 h-6 text-gray-600" />
+                </button>
+              </div>
+
+              {/* Reviews List - Scrollable */}
+              <div className="flex-1 overflow-y-auto p-4 md:p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {reviewsData.map((review) => (
+                    <div
+                      key={review.id}
+                      className="bg-gray-50 p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      <div className="flex items-start gap-4 mb-3">
+                        <img
+                          src={review.image}
+                          alt={review.name}
+                          className="w-12 h-12 rounded-full object-cover border-2 border-white shadow"
+                        />
+                        <div>
+                          <p className="font-semibold text-gray-800">{review.name}</p>
+                          <p className="text-sm text-gray-500">{review.role}</p>
+                        </div>
+                      </div>
+                      <StarRating count={review.rating} />
+                      <p className="text-gray-700 mt-3 text-sm leading-relaxed">
+                        "{review.comment}"
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

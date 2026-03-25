@@ -5,6 +5,7 @@ import { FaImages } from "react-icons/fa";
 import { FaCode } from "react-icons/fa";
 import { FaGlobe } from "react-icons/fa";
 import { FaBolt } from "react-icons/fa";
+import { FaAmazon, FaFacebook, FaMicrosoft, FaGoogle } from "react-icons/fa";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
@@ -64,25 +65,17 @@ const Hero = () => {
     }
   };
 
-  const iconVariants = {
-    hidden: { opacity: 0, y: 8 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.5 + (i * 0.1),
-        duration: 0.4
-      }
-    })
-  };
+  const companyIcons = [
+    { icon: FaAmazon, name: "Amazon" },
+    { icon: FaFacebook, name: "Meta" },
+    { icon: FaMicrosoft, name: "Microsoft" },
+    { icon: FaGoogle, name: "Google" }
+  ];
 
   return (
     <section
       ref={ref}
       className="w-full min-h-screen bg-gradient-to-br from-blue-900 to-blue-900  -mt-20 pb-6 flex flex-col justify-center items-center text-white relative overflow-hidden"
-      // style={{
-      //   background: "linear-gradient(130deg, #293EA0 15.32%, #0A80FE 78.37%)",
-      // }}
     >
       {/* Animated Background Elements */}
       <motion.div
@@ -145,14 +138,13 @@ const Hero = () => {
         </motion.div>
       </motion.div>
 
-      {/* Bottom Section */}
+      {/* Bottom Section with Company Icons */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}
         className="w-full max-w-6xl px-2 sm:px-4 text-center mb-6 md:mb-8"
       >
-        {/* Paragraph */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -163,25 +155,14 @@ const Hero = () => {
           <span className="text-gray-300 font-normal">industry leading companies worldwide</span>
         </motion.p>
 
-        {/* Icons */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="px-2"
-        >
+        <div className="px-2">
           <ul className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-4 lg:gap-6">
-            {[
-              { icon: FaBolt, text: "Boltshift" },
-              { icon: FaImages, text: "Lightbox" },
-              { icon: FaCode, text: "FeatherDev" },
-              { icon: FaGlobe, text: "Spherule" },
-              { icon: FaBook, text: "Nietzsche" }
-            ].map((item, index) => (
+            {companyIcons.map((item, index) => (
               <motion.li
                 key={index}
-                custom={index}
-                variants={iconVariants}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 + (index * 0.1), duration: 0.4 }}
                 className="flex flex-row items-center gap-1 sm:gap-2 opacity-80 hover:opacity-100 transition-opacity duration-300 p-1"
                 whileHover={!isMobile ? { scale: 1.05, y: -3 } : {}}
                 whileTap={isMobile ? { scale: 0.95 } : {}}
@@ -191,12 +172,12 @@ const Hero = () => {
                   className="text-white/90"
                 />
                 <h5 className="text-xs sm:text-sm md:text-base font-medium whitespace-nowrap">
-                  {item.text}
+                  {item.name}
                 </h5>
               </motion.li>
             ))}
           </ul>
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* Floating Arrow for mobile */}

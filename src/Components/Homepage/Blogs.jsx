@@ -8,25 +8,26 @@ const insights = [
   {
     image: "/src/assets/image-2.png",
     date: "Jan, 2026",
-    content: `The evolution of live-stream
-content and short-form video:
-a look at the TikTok revolution`,
-    shortDesc: "Explore how TikTok's algorithm and short-form video are reshaping digital marketing, with insights on engagement trends and future predictions."
+    content: `Agile development: accelerating
+software delivery with modern
+practices`,
+    shortDesc: "Learn how Agile methodologies and DevOps pipelines can streamline your development lifecycle, reduce time‑to‑market, and improve software quality."
   },
   {
     image: "/src/assets/image-3.png",
     date: "Jan, 2026",
-    content: `The Metaverse boom: brands
-unite and Apple takes a rain
-check.`,
-    shortDesc: "Dive into the latest Metaverse developments, including brand collaborations and Apple's cautious approach, and what it means for immersive experiences."
+    content: `Cloud-native architectures:
+scaling your business with
+serverless & containers`,
+    shortDesc: "Explore the shift to cloud‑native solutions, including serverless computing and container orchestration, to achieve elastic scalability and cost efficiency."
   },
   {
     image: "/src/assets/image-4.png",
     date: "Jan, 2026",
-    content: `Verify your site is protecting
-your business.`,
-    shortDesc: "Learn essential steps to secure your website, prevent data breaches, and build trust with your audience through robust security practices."
+    content: `AI-driven automation:
+how machine learning is
+reshaping enterprise IT`,
+    shortDesc: "Discover practical applications of AI in business—from predictive analytics to intelligent process automation—and how to integrate them into your infrastructure."
   },
 ]
 
@@ -49,8 +50,8 @@ const Blogs = () => {
         
         {/* Heading with animation */}
         <div className="text-center mb-5 xs:mb-7 sm:mb-9 md:mb-10 animate-fade-in-up">
-          <h2 className="font-extrabold text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl">Think further with our</h2>
-          <h2 className="font-extrabold text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl">expert insights.</h2>
+          <h2 className="font-extrabold text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl">Innovative Tech Insights &</h2>
+          <h2 className="font-extrabold text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl">Solutions</h2>
         </div>
 
         {/* Cards with staggered animations */}

@@ -5,21 +5,21 @@ import { motion } from "framer-motion";
 const tabs = [
   {
     label: "TEAM OF EXPERTS",
-    heading: "Friendly team of experts",
+    heading: "Dedicated IT Specialists",
     paragraph:
-      "Our experts and professionals are never more than an email or a phone call away. Or, if you prefer to talk face to face, drop by our office to discuss your plans and goals over a cup of coffee. We are here for you.",
+      "Our team of software engineers, developers, and IT consultants are always ready to provide expert guidance. From custom web and mobile applications to enterprise solutions, we ensure your technology goals are met with precision and professionalism.",
   },
   {
     label: "TRANSPARENCY",
-    heading: "Transparent Communication",
+    heading: "Clear Project Insights",
     paragraph:
-      "We believe in complete transparency. You'll always know the progress, challenges, and milestones of your project. No hidden agendas, just clear collaboration.",
+      "We maintain complete transparency in every phase of software development. You will always have visibility into project timelines, milestones, and deliverables, ensuring collaboration is smooth and expectations are aligned.",
   },
   {
     label: "RESULTS",
-    heading: "Proven Results",
+    heading: "Measurable IT Success",
     paragraph:
-      "Our track record speaks for itself. From boosting engagement rates to increasing revenue, we deliver measurable results that matter to your business growth.",
+      "Our solutions are designed to deliver real impact. From improving system efficiency to deploying scalable applications, we focus on measurable outcomes that accelerate business growth and enhance operational performance.",
   },
 ];
 
@@ -64,7 +64,7 @@ const Business = () => {
                   key={index}
                   onClick={() => setActiveTab(index)}
                   className={`px-2 xs:px-3 cursor-pointer sm:px-4  py-2 xs:py-3 sm:py-3 font-bold transition-all duration-300 flex-1 text-center text-xs xs:text-xs sm:text-sm md:text-base ${
-                    activeTab === index ? "text-white" : "text-gray-800"
+                    activeTab === index ? "text-gray-300" : "text-gray-800"
                   }`}
                   style={
                     activeTab === index
@@ -79,13 +79,13 @@ const Business = () => {
 
             {/* Card with solid brand color background */}
             <div 
-              className="rounded-b-2xl px-4 xs:px-5 py-3 xs:py-4 sm:p-6 md:p-8 lg:p-10 flex-1 animate-tabContent text-white"
+              className="rounded-b-2xl px-4 xs:px-5 py-3 xs:py-4 sm:p-6 md:p-8 lg:p-10 flex-1 animate-tabContent "
               style={{ backgroundColor: brandColor }}
             >
-              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold mb-2 xs:mb-3 sm:mb-3 md:mb-4 text-black">
+              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold mb-2 xs:mb-3 sm:mb-3 md:mb-4 text-gray-300">
                 {tabs[activeTab].heading}
               </h2>
-              <p className="text-xs xs:text-sm sm:text-sm md:text-base pt-5">
+              <p className="text-xs xs:text-sm sm:text-sm md:text-base pt-5 text-gray-300">
                 {tabs[activeTab].paragraph}
               </p>
             </div>
