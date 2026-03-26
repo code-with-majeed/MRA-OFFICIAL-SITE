@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { FaQuoteLeft } from "react-icons/fa";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { IoClose } from "react-icons/io5"; // for close button
+import { IoClose } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
+
+// Import your PNG images (adjust paths to match your folder structure)
+import awxImg from "../../assets/AWX.png";
+import gdpImg from "../../assets/GDP.png";
+import marketTrendsImg from "../../assets/Growth.png";
+import fourthImg from "../../assets/coding.png";
 
 const StarRating = ({ count = 5 }) => {
   return (
@@ -66,7 +72,7 @@ const reviewsData = [
     rating: 5,
     comment:
       "They don't just deliver; they care about your success. A true partner in growth.",
-    image: "/src/assets/reviws-1.jpg", // placeholder, replace with actual
+    image: "/src/assets/reviws-1.jpg",
   },
   {
     id: 5,
@@ -92,7 +98,6 @@ const Smart = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Lock body scroll when modal is open
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
@@ -218,7 +223,7 @@ const Smart = () => {
                 ))}
               </div>
 
-              {/* View all reviews button - now clickable */}
+              {/* View all reviews button */}
               <motion.div
                 onClick={toggleModal}
                 className="flex items-center text-[#1B388E] font-semibold gap-1 cursor-pointer text-sm md:text-base"
@@ -232,7 +237,7 @@ const Smart = () => {
           </motion.div>
         </div>
 
-        {/* Purple Section - STACK OVER FOOTER */}
+        {/* Purple Section */}
         <motion.div
           initial={{ y: 40, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : {}}
@@ -243,14 +248,12 @@ const Smart = () => {
             <div className="p-4 sm:p-6 md:p-8 lg:p-10">
               {/* Top Content */}
               <div className="flex flex-col lg:flex-row items-start justify-between gap-4 sm:gap-6 md:gap-8 text-center lg:text-left">
-                {/* Left Text */}
                 <div className="flex-1">
                   <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 leading-snug md:leading-tight">
                     Grow faster with MRA's smart digital solutions.
                   </h2>
                 </div>
 
-                {/* Right Text & Button */}
                 <div className="flex flex-col text-center md:text-right lg:items-end w-full lg:w-auto">
                   <p className="mb-2 text-gray-700 text-base sm:text-lg">
                     Have a project in mind? Speak with our experts now.
@@ -306,22 +309,33 @@ const Smart = () => {
                 animate={inView ? "visible" : "hidden"}
                 className="py-6 sm:py-8 md:py-10 flex flex-col lg:flex-row justify-between gap-4 sm:gap-6 md:gap-8"
               >
-                {/* Left - Partners */}
+                {/* Left - Partners with PNG images (four icons) */}
                 <motion.div variants={itemVariants} className="flex-1 text-center lg:text-left">
                   <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
                     A partner, not a vendor
                   </h3>
-                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-wrap justify-center lg:justify-start">
-                    {[1, 2, 3, 4].map((index) => (
-                      <motion.img
-                        key={index}
-                        src="/src/assets/meta-partner.svg.png"
-                        alt={`Partner ${index}`}
-                        className="w-16 h-auto sm:w-18 md:w-20 lg:w-24"
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.2 }}
-                      />
-                    ))}
+                  {/* Single row on all devices using flex-row */}
+                  <div className="flex flex-row justify-center items-center gap-4 flex-nowrap">
+                    <img
+                      src={awxImg}
+                      alt="AWX"
+                      className="w-8 h-8 object-contain hover:scale-110 transition-transform duration-300 cursor-pointer"
+                    />
+                    <img
+                      src={gdpImg}
+                      alt="GDP"
+                      className="w-8 h-8 object-contain hover:scale-110 transition-transform duration-300 cursor-pointer"
+                    />
+                    <img
+                      src={marketTrendsImg}
+                      alt="Market Trends"
+                      className="w-8 h-8 object-contain hover:scale-110 transition-transform duration-300 cursor-pointer"
+                    />
+                    <img
+                      src={fourthImg}
+                      alt="Fourth Icon"
+                      className="w-8 h-8 object-contain hover:scale-110 transition-transform duration-300 cursor-pointer"
+                    />
                   </div>
                 </motion.div>
 
@@ -350,7 +364,6 @@ const Smart = () => {
       <AnimatePresence>
         {isModalOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -358,8 +371,6 @@ const Smart = () => {
               onClick={toggleModal}
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
             />
-
-            {/* Modal Content */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -367,7 +378,6 @@ const Smart = () => {
               transition={{ duration: 0.3 }}
               className="fixed inset-4 md:inset-10 lg:inset-20 z-50 overflow-hidden bg-white rounded-2xl shadow-2xl flex flex-col"
             >
-              {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-gray-200">
                 <h3 className="text-xl md:text-2xl font-bold text-gray-800">
                   Customer Reviews
@@ -379,8 +389,6 @@ const Smart = () => {
                   <IoClose className="w-6 h-6 text-gray-600" />
                 </button>
               </div>
-
-              {/* Reviews List - Scrollable */}
               <div className="flex-1 overflow-y-auto p-4 md:p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {reviewsData.map((review) => (

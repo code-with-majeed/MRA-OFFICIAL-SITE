@@ -75,11 +75,6 @@ const Blogs = () => {
 
               {/* Text Section */}
               <div className="flex flex-col flex-grow px-4 xs:px-5 sm:px-6 lg:px-8 py-3 xs:py-4 sm:py-5 lg:py-6 text-center md:text-left">
-                <p className="text-xs xs:text-xs sm:text-sm md:text-base text-[#000000B2] mb-2 xs:mb-3 sm:mb-4"> 
-                  {item.date}
-                  <span className="inline-block ml-2 xs:ml-3 h-px w-6 xs:w-8 bg-gray-300 align-middle"></span>
-                </p>
-
                 <p className="text-black text-sm xs:text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed sm:leading-relaxed lg:leading-relaxed whitespace-pre-line">
                   {item.content}
                 </p>
